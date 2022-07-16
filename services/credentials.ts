@@ -3,7 +3,8 @@ import {
     countCredentialsByUrl, 
     insertCredential,
     getCredentialsById,
-    getCredentialsByUserId
+    getCredentialsByUserId,
+    deleteCredential
 } from "../repositories/credentialsRepository";
 
 const credentialsService = { 
@@ -11,6 +12,7 @@ const credentialsService = {
     countCredentialsByUrl, 
     insertCredential,
     getCredentialsById,
-    getCredentialsByUserId
+    getCredentialsByUserId,
+    deleteCredential
 };
 export default credentialsService;

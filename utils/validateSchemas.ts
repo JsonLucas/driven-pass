@@ -1,26 +1,39 @@
-import { signIn, signUp, setCredential } from "../types";
-import { createAccountSchema, createCredentialSchema, signInSchema } from "./schemas/schemas";
+import { signIn, signUp, setCredential, setNote } from "../types";
+import { 
+    createAccountSchema, 
+    createCredentialSchema, 
+    createNoteSchema, 
+    signInSchema 
+} from "./schemas/schemas";
 
 export const validateSignUp = (body: signUp) => {
-    const validation = createAccountSchema.validate(body);
-    if(validation.error){
-        return { status: false, message: validation.error };
+    const { error } = createAccountSchema.validate(body);
+    if(error){
+        return { status: false, message: error };
     }
     return { status: true };
 }
 
 export const validateSignIn = (body: signIn) => {
-    const validation = signInSchema.validate(body);
-    if(validation.error){
-        return { status: false, message: validation.error };
+    const { error } = signInSchema.validate(body);
+    if(error){
+        return { status: false, message: error };
     }
     return { status: true };
 }
 
 export const validateCredentials = (body: setCredential) => {
-    const validation = createCredentialSchema.validate(body);
-    if(validation.error){
-        return { status: false, message: validation.error };
+    const { error } = createCredentialSchema.validate(body);
+    if(error){
+        return { status: false, message: error };
+    }
+    return { status: true };
+}
+
+export const validateNote = (body: setNote) => {
+    const { error } = createNoteSchema.validate(body);
+    if(error){
+        return { status: false, message: error };
     }
     return { status: true };
 }

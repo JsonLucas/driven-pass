@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { signIn, signUp, setCredential } from '../../types';
+import { signIn, signUp, setCredential, setNote } from '../../types';
 
 export const createAccountSchema = joi.object<signUp>({
     name: joi.string().required(),
@@ -17,4 +17,9 @@ export const createCredentialSchema = joi.object<setCredential>({
     username: joi.string().required(),
     password: joi.string().required(),
     title: joi.string().required() 
+});
+
+export const createNoteSchema = joi.object<setNote>({
+    title: joi.string().max(50).required(),
+    text: joi.string().max(1000).required()
 });

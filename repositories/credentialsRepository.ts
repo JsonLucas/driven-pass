@@ -53,3 +53,12 @@ export const countCredentialsByUrl = async (url: string) => {
     });
     return query;
 }
+
+export const deleteCredential = async (id: number) => {
+    const query = await prisma.credentials.delete({
+        where: {
+            id
+        }
+    });
+    return query;
+}
