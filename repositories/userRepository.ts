@@ -22,3 +22,12 @@ export const getUserByEmail = async (signInData: signIn) => {
     });
     return query;
 }
+
+export const getUserById = async (userId: number) => {
+    const query = await prisma.users.findUnique({
+        where: {
+            id: userId
+        }
+    });
+    return query;
+}
