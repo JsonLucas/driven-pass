@@ -1,5 +1,5 @@
-import { setUser } from "../repositories/userRepository";
+import { setUser, getUserByEmail } from "../repositories/userRepository";
 
-const usersService = { setUser };
+const usersService = { setUser, getUserByEmail };
 
 export default usersService;

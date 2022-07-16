@@ -1,8 +1,8 @@
 import prisma from "../database";
-import { signUp } from "../types";
+import { signIn, signUp } from "../types";
 
 export const setUser = async (userData: signUp) => {
-    const { name, password, email } = userData
+    const { name, password, email } = userData;
     const insert = await prisma.users.create({
         data: {
             name,
@@ -11,4 +11,14 @@ export const setUser = async (userData: signUp) => {
         }
     });
     return insert;
+}
+
+export const getUserByEmail = async (signInData: signIn) => {
+    const { email } = signInData;
+    const query = await prisma.users.findUnique({
+        where: {
+            email
+        }
+    });
+    return query;
 }
