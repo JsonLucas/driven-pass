@@ -1,9 +1,10 @@
-import { signIn, signUp, setCredential, setNote, setCard } from "../types";
+import { signIn, signUp, setCredential, setNote, setCard, setWifi } from "../types";
 import { 
     createAccountSchema, 
     createCardSchema, 
     createCredentialSchema, 
     createNoteSchema, 
+    createWifiSchema, 
     signInSchema 
 } from "./schemas/schemas";
 
@@ -43,6 +44,14 @@ export const validateCard = (body: setCard) => {
     const { error } = createCardSchema.validate(body);
     if(error){
         return { status: false, message: error }; 
+    }
+    return { status: true };
+}
+
+export const validateWifi = (body: setWifi) => {
+    const { error } = createWifiSchema.validate(body);
+    if(error){
+        return { status: false, message: error };
     }
     return { status: true };
 }

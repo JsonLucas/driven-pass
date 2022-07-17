@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import credentialsService from "../services/credentials";
+import credentialsService from "../services/credentialsService";
 
 export const setCredentialsController = async (req: Request, res: Response) => {
     const { userId, credential } = res.locals;

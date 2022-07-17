@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import credentialsService from "../services/credentials";
+import credentialsService from "../services/credentialsService";
 import { validateCredentials } from "../utils/validateSchemas";
 
 const setCredentialsMiddleware = async (req: Request, res: Response, next: NextFunction) => {

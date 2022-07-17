@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { signIn, signUp, setCredential, setNote, setCard } from '../../types';
+import { signIn, signUp, setCredential, setNote, setCard, setWifi } from '../../types';
 
 export const createAccountSchema = joi.object<signUp>({
     name: joi.string().required(),
@@ -33,4 +33,10 @@ export const createCardSchema = joi.object<setCard>({
     expirationDate: joi.string().regex(/[0-9][0-9]-[0-9][0-9]/).required(),
     isVirtual: joi.boolean().required(),
     type: joi.string().equal('credit', 'debit', 'both').required()
+});
+
+export const createWifiSchema = joi.object<setWifi>({
+    name: joi.string().required(),
+    password: joi.string().required(),
+    title: joi.string().required()
 });
