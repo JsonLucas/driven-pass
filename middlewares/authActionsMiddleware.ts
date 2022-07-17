@@ -1,4 +1,4 @@
-import usersService from "../services/users";
+import usersService from "../services/usersService";
 import { verifyToken } from "../utils/tokenUtils";
 import { NextFunction, Request, Response } from "express";
 

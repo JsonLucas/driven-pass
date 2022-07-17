@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import usersService from "../services/users";
+import usersService from "../services/usersService";
 import { encryptPassword } from "../utils/cryptUtils";
 
 const signUpController = async (req: Request, res: Response) => {

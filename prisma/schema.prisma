@@ -38,16 +38,17 @@ model notes {
 }
 
 model cards {
-  id             Int      @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
   number         String
   name           String
   cvv            String
-  expirationDate DateTime
+  expirationDate String
   password       String
   isVirtual      Boolean
   type           String
   userId         Int
-  users          users    @relation(fields: [userId], references: [id])
+  title          String
+  users          users   @relation(fields: [userId], references: [id])
 }
 
 model wifi {

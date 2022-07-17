@@ -1,6 +1,7 @@
-import { signIn, signUp, setCredential, setNote } from "../types";
+import { signIn, signUp, setCredential, setNote, setCard } from "../types";
 import { 
     createAccountSchema, 
+    createCardSchema, 
     createCredentialSchema, 
     createNoteSchema, 
     signInSchema 
@@ -34,6 +35,14 @@ export const validateNote = (body: setNote) => {
     const { error } = createNoteSchema.validate(body);
     if(error){
         return { status: false, message: error };
+    }
+    return { status: true };
+}
+
+export const validateCard = (body: setCard) => {
+    const { error } = createCardSchema.validate(body);
+    if(error){
+        return { status: false, message: error }; 
     }
     return { status: true };
 }

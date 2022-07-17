@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import usersService from "../services/users";
+import usersService from "../services/usersService";
 import { decryptPassword } from "../utils/cryptUtils";
 import { validateSignIn } from "../utils/validateSchemas";
 
