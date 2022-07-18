@@ -20,7 +20,7 @@ export const getCardByIdController = async (req: Request, res: Response) => {
     if (card?.userId !== Number(userId)) {
         throw { code: 404 };
     }
-    res.status(200).send({ card });
+    res.status(200).send(card);
     return;
 }
 
