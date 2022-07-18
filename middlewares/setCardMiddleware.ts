@@ -5,23 +5,13 @@ import { validateCard } from "../utils/validateSchemas";
 const setCardMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const { userId } = res.locals;
     const { body } = req;
-    try{
-        const { status, message } = validateCard(body);
-        if(!status){
-            res.status(422).send(message);
-            return;
-        }
-        const countCards = await cardsService.countCardsByTitleAndUserId(Number(userId), body.title);
-        if(countCards > 0){
-            res.status(409).send(`"${body.title}" is already in your cards`);
-            return;
-        }
-        res.locals.data = body;
-        next();
-    }catch(e: any){
-        console.log(e.message);
-        res.sendStatus(500);
-    }
+    const { status, message } = validateCard(body);
+    if (!status) throw { code: 422, error: message }
+    
+    const countCards = await cardsService.countCardsByTitleAndUserId(Number(userId), body.title);
+    if (countCards > 0) throw { code: 409, error: `"${body.title}" is already in your cards` };
+    res.locals.data = body;
+    next();
 }
 
 export default setCardMiddleware;

@@ -6,21 +6,15 @@ import { validateSignIn } from "../utils/validateSchemas";
 const authSignInMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const { body } = req;
     const { status, message } = validateSignIn(body);
-    if(status){
-        const { email, password } = body;
-        const user = await usersService.getUserByEmail({email, password});
-        if(user){
-            if(decryptPassword(password, user.password)){
-                res.locals.data = {...body, userId: user.id};
-                next();
-                return;
-            }
-            res.sendStatus(401);
-            return;
-        }
-    }
-    res.status(422).send(message);
-    //throw { type: 'unproccessable_entity', message };
+    if (!status) throw { code: 422, error: message };
+
+    const { email, password } = body;
+    const user = await usersService.getUserByEmail({ email, password });
+    if (!user) throw { code: 400 };
+    
+    if (!decryptPassword(password, user.password)) throw { code: 401 };
+    res.locals.data = { ...body, userId: user.id };
+    next();
 }
 
 export default authSignInMiddleware;

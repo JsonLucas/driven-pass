@@ -1,15 +1,15 @@
 import { NextFunction, Response, Request } from "express";
 
 export const handleErrors = (e: any, req: Request, res: Response, next:NextFunction) => {
-    console.log(e.message);
-    if(e.type){
-        res.sendStatus(errorCode(e.type));
+    console.log(e);
+    if(e.code){
+        if(e.error){
+            res.status(e.code).send(e.error);
+            return;
+        }
+        res.sendStatus(e.code);
         return;
     }
-    res.sendStatus(500);
+    res.status(500).send(e.message);
+    return;
 } 
-
-const errorCode = (type: string) => {
-    console.log(type);
-    return 400;
-}
